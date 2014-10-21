@@ -5,7 +5,6 @@ package jogodeboliche;
 
 public class Boliche {
      int score = 0;
-
      int pinos;
 
 
