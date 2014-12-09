@@ -12,18 +12,33 @@ public class GUI extends JFrame {
     
     Container cp = new Container();
     
+    int Rodada = 1;
+    int Jogadores;
+    
+    Boliche teste1 = new Boliche();
+    
     Random random = new Random();
     
     JPanel PnIn = new JPanel();
+    JPanel left = new JPanel();
     JPanel PnPt = new JPanel();
     JPanel PnBt = new JPanel();
     
     JTextField tfJogadores = new JTextField(15);
     
-    JLabel lb1 = new JLabel("0");
+    JLabel lb1 = new JLabel("Jogador1 Pontuação:");
+    JLabel lb2 = new JLabel("Jogador2 Pontuação:");
+    JLabel lb3 = new JLabel("Jogador3 Pontuação:");
+    JLabel lb4 = new JLabel("Jogador4 Pontuação:");
+    JLabel lbRodada = new JLabel("Rodada1");
     
     JButton btComecar = new JButton("Começar");
     JButton btJogar = new JButton("Jogar");
+
+    JButton bt1 = new JButton("Jogar");
+    JButton bt2 = new JButton("Jogar");
+    JButton bt3 = new JButton("Jogar");
+    JButton bt4 = new JButton("Jogar");
     
 
     public GUI(){
@@ -36,35 +51,52 @@ public class GUI extends JFrame {
         
         cp.setLayout(new BorderLayout());
         
-        PnIn.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Jogadores = Integer.valueOf(JOptionPane.showInputDialog(null,"Numero de Jogadores?"));
         
-        PnIn.add(new JLabel("Numero de Jogadores:"));
-        PnIn.add(tfJogadores);
-        PnIn.add(btComecar);
+        PnPt.setLayout(new GridLayout(Jogadores,1));
         
-        PnPt.setLayout(new FlowLayout(FlowLayout.LEFT));
+        if(Jogadores == 1){
+            PnPt.add(lb1);
+        }
+        if(Jogadores == 2){
+            PnPt.add(lb1);
+            PnPt.add(lb2);
+        }
+        if(Jogadores == 3){
+            PnPt.add(lb1);
+            PnPt.add(lb2);
+            PnPt.add(lb3);
+        }
+        if(Jogadores == 4){
+            PnPt.add(lb1);
+            PnPt.add(lb2);
+            PnPt.add(lb3);
+            PnPt.add(lb4);
+        }
         
-        PnPt.add(new JLabel("Pontuação:"));
-        PnPt.add(lb1);
-        
+        left.setLayout(new FlowLayout(FlowLayout.LEFT));
+        left.add(PnPt);
         
         PnBt.setLayout(new FlowLayout(FlowLayout.CENTER));
         
+        PnBt.add(lbRodada);
         PnBt.add(btJogar);
-        
-        cp.add(PnIn, BorderLayout.NORTH);
-        cp.add(PnPt, BorderLayout.CENTER);
+         
+        cp.add(left, BorderLayout.NORTH);
         cp.add(PnBt, BorderLayout.SOUTH);
-        
-        Boliche teste1 = new Boliche();
+         
          btJogar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent a) {
+            public void actionPerformed(ActionEvent b) {
                 
-                int pinos = random.nextInt(11);
+                Rodada++;
+                lbRodada.setText("Rodada" + Rodada);
                 
-                lb1.setText(String.valueOf(pinos));
-                
+                if(Rodada == 21){
+                    PnBt.remove(btJogar);
+                    lbRodada.setText("FIM DE JOGO!");
+                }
+               
                 
                   }
         });
