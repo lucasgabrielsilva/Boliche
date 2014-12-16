@@ -62,7 +62,7 @@ public class Boliche {
                 p++;
             }
         }
-        else if(pinos < 0 & pinos > 11){
+        else if(pinos < 0 & pinos > 11){  // Veja as correções que sugiri para o Gadiel
             System.out.println("ERRO!!!");;
         }
       
